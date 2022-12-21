@@ -180,9 +180,9 @@ function clip_loop() {
     //----set_up-----
     if (set_up) {
         document.addEventListener("keydown", (e) => {
-            if (e.ctrlKey && e.key == 's') {
-                Verify()
-            }
+//             if (e.ctrlKey && e.key == 's') {
+//                 Verify()
+//             }
             if (e.altKey && e.shiftKey && e.key == "C") {
                 e.preventDefault()
                 document.querySelector("#root > main > div > div.css-q2fgle > div.css-zabvfl > div.css-1u1sbic > div.css-1x48guh > button:nth-child(2)").click()
