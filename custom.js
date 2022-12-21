@@ -27,24 +27,24 @@ var mistake_count_once = false;
 
 //--------------FLIDE_CLIPS--------------
 //qa_question
-function Resolve() {
-    let holder = document.querySelector("#root > main > div > div:nth-child(3) > div > div > div.css-t32mmx > div.css-1gsvi7y > div.css-yulmdl > div.css-603q35 > div > div > div")
-    if (holder != null) {
-        let resolved = holder.childNodes[2]
-        if (resolved.ariaSelected != 'true') {
+// function Resolve() {
+//     let holder = document.querySelector("#root > main > div > div:nth-child(3) > div > div > div.css-t32mmx > div.css-1gsvi7y > div.css-yulmdl > div.css-603q35 > div > div > div")
+//     if (holder != null) {
+//         let resolved = holder.childNodes[2]
+//         if (resolved.ariaSelected != 'true') {
 
-            let commentBoxes = document.querySelector("#root > main > div > div:nth-child(3) > div > div > div.css-t32mmx > div.css-1gsvi7y > div.css-yulmdl > div.css-t32mmx > div.css-hl05sq");
+//             let commentBoxes = document.querySelector("#root > main > div > div:nth-child(3) > div > div > div.css-t32mmx > div.css-1gsvi7y > div.css-yulmdl > div.css-t32mmx > div.css-hl05sq");
 
-            let list = commentBoxes.childNodes;
+//             let list = commentBoxes.childNodes;
 
-            list.forEach(
-                function (item) {
-                    if (item.textContent.includes("qa_question"))
-                        item.childNodes[1].firstChild.click();
-                });
-        }
-    }
-};
+//             list.forEach(
+//                 function (item) {
+//                     if (item.textContent.includes("qa_question"))
+//                         item.childNodes[1].firstChild.click();
+//                 });
+//         }
+//     }
+// };
 
 //Major/Minor Selection
 function Mistake() {
@@ -70,9 +70,9 @@ function Mistake() {
         if (!guideline) {
             let textBox = document.querySelector("#root > main > div > div.css-q2jbf2 > div > div > div.css-t32mmx > div.css-1gsvi7y > div.css-1g5ypn2 > div.file-drop-container.css-1vry8gg > textarea")
 
-            if (textBox.textContent.includes("Major") || textBox.textContent.includes("Automatic")) {
+            if (textBox.textContent.includes("(Major") || textBox.textContent.includes("(Automatic")) {
                 document.querySelector("#root > main > div > div.css-q2jbf2 > div > div > div.css-t32mmx > div.css-1gsvi7y > div.css-1g5ypn2 > div.css-vujjmw > div:nth-child(3) > label:nth-child(1) > input").click()
-            } else if (textBox.textContent.includes("Minor")) {
+            } else if (textBox.textContent.includes("(Minor")) {
                 document.querySelector("#root > main > div > div.css-q2jbf2 > div > div > div.css-t32mmx > div.css-1gsvi7y > div.css-1g5ypn2 > div.css-vujjmw > div:nth-child(3) > label:nth-child(2) > input").click()
             }
         }
@@ -179,18 +179,21 @@ if (window.location.href.includes("TCLP"))
 function clip_loop() {
     //----set_up-----
     if (set_up) {
-        document.addEventListener("keyup", (event) => {
-            if (event.key == 's') {
+        document.addEventListener("keydown", (e) => {
+            if (e.ctrlKey && e.key == 's') {
                 Verify()
             }
-
+            if (e.altKey && e.shiftKey && e.key == "C") {
+                e.preventDefault()
+                document.querySelector("#root > main > div > div.css-q2fgle > div.css-zabvfl > div.css-1u1sbic > div.css-1x48guh > button:nth-child(2)").click()
+            }
         });
         set_up = false
     }
 
     Mistake()
     Filter()
-    Resolve()
+//     Resolve()
     MistakeCount()
 
     requestAnimationFrame(clip_loop)
