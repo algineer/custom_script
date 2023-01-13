@@ -107,6 +107,14 @@ function Filter() {
     }
 };
 
+
+//Comment Filter
+function FQA() {
+    let text = document.querySelector("#root > main > div > div.css-q2jbf2 > div > div.css-1g3a9gs > div.file-drop-container.css-1vry8gg > textarea")
+    if (text != null) 
+      text.style.height = "300px"
+};
+
 //skip_far_ver
 function Verify() {
     var type = document.querySelector("#root > main > div > div.css-q2fgle > div.css-zabvfl > div.css-1u1sbic > div:nth-child(4) > div > div.label-attr-select.css-16bay3 > div.css-1bfjj17")
@@ -193,8 +201,8 @@ function clip_loop() {
 
     Mistake()
     Filter()
-//     Resolve()
     MistakeCount()
+    FQA()
 
     requestAnimationFrame(clip_loop)
 }
