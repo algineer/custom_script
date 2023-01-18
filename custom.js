@@ -2,7 +2,10 @@
 var guideline = false
 var set_up = true
 var filter_once = false
+
 const filter = document.createElement('textarea')
+const prev = document.createElement('button')
+const next = document.createElement('button')
 
 const commentBoxHTML = '<div class="css-1vft9uj" style="border-top: thin solid red;">' +
     '<div class="css-vujjmw" style="margin-left: 10px;">' +
@@ -187,13 +190,25 @@ if (window.location.href.includes("TCLP"))
 function clip_loop() {
     //----set_up-----
     if (set_up) {
+        
+        setTimeout(function() {
+            document.querySelector("#root > main > div > div.css-q2fgle > div.css-zabvfl > div.css-1u1sbic > div:nth-child(1) > div.css-1npc354 > svg:nth-child(1)").appendChild(prev)
+            document.querySelector("#root > main > div > div.css-q2fgle > div.css-zabvfl > div.css-1u1sbic > div:nth-child(1) > div.css-1npc354 > svg:nth-child(2)").appendChild(next)
+        }, 5000);
+
         document.addEventListener("keydown", (e) => {
-//             if (e.ctrlKey && e.key == 's') {
-//                 Verify()
-//             }
+
             if (e.altKey && e.shiftKey && e.key == "C") {
+                 e.preventDefault()
+                 document.querySelector("#root > main > div > div.css-q2fgle > div.css-zabvfl > div.css-1u1sbic > div.css-1x48guh > button:nth-child(2)").click()
+            }
+            if (e.altKey && e.key == ",") {
                 e.preventDefault()
-                document.querySelector("#root > main > div > div.css-q2fgle > div.css-zabvfl > div.css-1u1sbic > div.css-1x48guh > button:nth-child(2)").click()
+                prev.click()
+            }
+            if (e.altKey && e.key == ".") {
+                e.preventDefault()
+                next.click()
             }
         });
         set_up = false
