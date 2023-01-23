@@ -187,11 +187,12 @@ function Hotkeys() {
     let svg_prev = document.querySelector("#root > main > div > div.css-q2fgle > div.css-zabvfl > div.css-1u1sbic > div:nth-child(1) > div.css-1npc354 > svg:nth-child(1)")
     let svg_next = document.querySelector("#root > main > div > div.css-q2fgle > div.css-zabvfl > div.css-1u1sbic > div:nth-child(1) > div.css-1npc354 > svg:nth-child(2)")
 
-    if (svg_prev.childElementCount < 2)
-        svg_prev.appendChild(prev)
-    if (svg_next.childElementCount < 2)
-        svg_next.appendChild(next)
-
+    if (svg_prev != null && svg_next != null) {
+        if (svg_prev.childElementCount < 2)
+            svg_prev.appendChild(prev)
+        if (svg_next.childElementCount < 2)
+            svg_next.appendChild(next)
+    }
 }
 
 if (window.location.href.includes("TCLP"))
@@ -214,6 +215,26 @@ function clip_loop() {
             if (e.altKey && e.key == ".") {
                 e.preventDefault()
                 next.click()
+            }
+            if (e.ctrlKey && e.shiftKey && e.key == "C") {
+                e.preventDefault()
+                if (!document.querySelector("#contrastSettings").className.includes("Secondary")) {
+                    document.querySelector("#contrastSettings").click()
+                    document.querySelector("body > div:nth-child(7) > div > div > div > div:nth-child(7) > label > input").click()
+                    document.querySelector("#contrastSettings").click()
+                } else {
+                    document.querySelector("body > div:nth-child(7) > div > div > div > div:nth-child(7) > label > input").click()
+                }
+            }
+            if (e.ctrlKey && e.shiftKey && e.key == "E") {
+                e.preventDefault()
+                if (!document.querySelector("#contrastSettings").className.includes("Secondary")) {
+                    document.querySelector("#contrastSettings").click()
+                    document.querySelector("body > div:nth-child(7) > div > div > div > div:nth-child(8) > label > input").click()
+                    document.querySelector("#contrastSettings").click()
+                } else {
+                    document.querySelector("body > div:nth-child(7) > div > div > div > div:nth-child(8) > label > input").click()
+                }
             }
         });
         set_up = false
